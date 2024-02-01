@@ -18,25 +18,29 @@ class FitnessApp:
         self.root.geometry("600x400")  # Größe des Hauptfensters
 
         # Kamera-Label
-        self.video_label = tk.Label(root, height=15, width=30)
+        self.video_label = tk.Label(root, height=15, width=40)
         self.video_label.pack()
+        #self.video_label.grid(row=0, column=0, columnspan=2)
 
         # Übungsauswahl
         self.exercise_label = tk.Label(root, text="Wähle eine Übung:")
         self.exercise_label.pack()
+        #self.exercise_label.grid(row=10, column=0, columnspan=2)
 
         self.exercise_var = tk.StringVar(root)
         exercises = ["Liegestütze", "Kniebeugen", "Plank"]  # Fügen Sie weitere Übungen hinzu
         self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, *exercises)
         self.exercise_dropdown.config(width=20)  # Breite des Auswahlmenüs
         self.exercise_dropdown.pack()
+        #self.exercise_label.grid(row=12, column=8, columnspan=90)
 
         # Start-Button
         self.start_button = tk.Button(root, text="Start", command=self.start_workout, height=3, width=20)
         self.start_button.pack()
+        #self.exercise_label.grid(row=6, column=0, columnspan=2)
 
         # Kamera initialisieren (noch nicht starten)
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(0) 
         self.camera_started = False
 
     def start_workout(self):
@@ -53,10 +57,14 @@ class FitnessApp:
     def start_camera(self):
         if not self.camera_started:
             self.camera_started = True
+            self.start_button.pack_forget()
+            self.exercise_dropdown.pack_forget()
+            self.video_label.pack(expand=True, fill=tk.BOTH)
             self.show_camera()
 
     def show_camera(self):
         _, frame = self.cap.read()
+        frame = cv2.resize(frame, (800, 600))     #Kamera größe - schneidet beim vergrößern ab 
         photo = ImageTk.PhotoImage(image=Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
         self.video_label.configure(image=photo)
         self.video_label.image = photo
