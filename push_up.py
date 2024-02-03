@@ -4,12 +4,12 @@ import mediapipe as md
 md_drawing = md.solutions.drawing_utils
 md_pose = md.solutions.pose
 
-count = 0
-position = None
+def run_push():
+    count = 0
+    position = None
 
-cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)
 
-def funktion_push():
     with md_pose.Pose(
             min_detection_confidence=0.7,
             min_tracking_confidence=0.7) as pose:
@@ -51,4 +51,4 @@ def funktion_push():
     cv2.destroyAllWindows
 
 if __name__ == "__main__":
-    funktion_push()
+    run_push()

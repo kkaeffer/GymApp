@@ -2,14 +2,16 @@ import tkinter as tk
 from tkinter import messagebox
 import cv2
 from PIL import Image, ImageTk  # Pillow-Bibliothek für die Bildverarbeitung
+import push_up as Push_up
 import knee as Knee
-#import push_up as Push_up
+#from knee import Exercise as Knee
+#from push_up import Exercise as Push_up
 
 class Exercise:
     def __init__(self, name):
         self.name = name
         # import knee as name
-        import push_up as Push_up
+        #import push_up as Push_up
 
     def start(self):
         # Hier implementieren Sie die Logik für die jeweilige Übung
@@ -36,7 +38,8 @@ class FitnessApp:
         #self.exercise_label.grid(row=10, column=0, columnspan=2)
 
         self.exercise_var = tk.StringVar(root)
-        exercises = [Exercise("Push_up"), Knee("Kniebeugen")]  # Fügen Sie weitere Übungen hinzu
+        exercises = [Push_up.run_push("Push_up"), Knee.run_knee("Knee")]
+        #exercises = [Exercise("Push_up"), Knee("Kniebeugen")]  # Fügen Sie weitere Übungen hinzu
         #exercises = [Exercise("Auswahl")], Push_up("Push_up")#,  Knee("Kniebeugen")]  # Fügen Sie weitere Übungen hinzu
         self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, *exercises)
         self.exercise_dropdown.config(width=20)  # Breite des Auswahlmenüs
@@ -68,7 +71,7 @@ class FitnessApp:
             if exercise_name == "Push_up":
                 self.current_exercise = Push_up(exercise_name)
             elif exercise_name == "Kniebeugen":
-                self.current_exercise = Knee(exercise_name)
+                self.current_exercise = Knee.run_knee(exercise_name)
             else:
                 pass
 
