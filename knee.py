@@ -61,4 +61,8 @@ with md_pose.Pose(
         if key == ord('q'):
             break
 
-cap.release()
+    cap.release()
+    cv2.destroyAllWindows
+
+if __name__ == "__main__":
+    calculate_angle()
