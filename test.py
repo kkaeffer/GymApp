@@ -1,3 +1,5 @@
+import time
+
 def count_per_second():
     counter = 0
     try:
