@@ -2,6 +2,7 @@
 #Import der OpenCV und Mediapipe Bibliotheken
 import cv2
 import mediapipe as md
+from counter import countfunc
 
 #Variablendefinition
 md_drawing = md.solutions.drawing_utils
@@ -62,10 +63,13 @@ class PushUpCounter:
                         self.position = None
 
                 #Text + Count Anzeige
-                font = cv2.FONT_HERSHEY_SIMPLEX
-                cv2.putText(image, f'Push-ups: {self.count}', (10, 40), font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-                cv2.putText(image, f'Q zum Beenden', (390, 40), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
+                #font = cv2.FONT_HERSHEY_SIMPLEX
+                #cv2.putText(image, f'Push-ups: {self.count}', (10, 40), font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                #cv2.putText(image, f'Q zum Beenden', (390, 40), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
                 
+                countfunc(image, self.count)
+                cv2.putText(image, f'Q zum Beenden', (370, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
                 #Spiegele das gesamte Bild horizontal
                 image = cv2.flip(image, 1)
 
