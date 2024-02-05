@@ -3,6 +3,7 @@
 import cv2
 import mediapipe as md
 import math
+from counter import countfunc
 
 #Variablendefinition
 md_drawing = md.solutions.drawing_utils
@@ -77,14 +78,14 @@ class KneeCounter:
                     else:
                         position = None
 
-                #Text + Count Anzeige
-                font = cv2.FONT_HERSHEY_SIMPLEX
-                cv2.putText(image, f'Squats: {self.count}', (10, 40), font, 1, (0, 0, 0), 2, cv2.LINE_AA)
-                cv2.putText(image, f'q zum Beenden', (390, 40), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
-                
+                #Anzeige eines Counters und Hinweistext
+                countfunc(image, count)
+                cv2.putText(image, f'Q zum Beenden', (370, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
                 #Spiegele das gesamte Bild horizontal
                 image = cv2.flip(image, 1)
 
+                #Anzeige des Fensters im Vollbild
                 cv2.namedWindow("Squat Counter", cv2.WND_PROP_FULLSCREEN)
                 cv2.setWindowProperty("Squat Counter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
                 cv2.imshow("Squat counter", cv2.flip(image, 1))
