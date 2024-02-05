@@ -62,6 +62,16 @@ class KneeCounter:
                     else:
                         position = None
 
+                # Text + Count Anzeige
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                cv2.putText(image, f'Squats: {self.count}', (10, 40), font, 1, (0, 0, 0), 2, cv2.LINE_AA)
+                cv2.putText(image, f'q zum Beenden', (390, 40), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
+                
+                # Spiegele das gesamte Bild horizontal
+                image = cv2.flip(image, 1)
+
+                cv2.namedWindow("Squat Counter", cv2.WND_PROP_FULLSCREEN)
+                cv2.setWindowProperty("Squat Counter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
                 cv2.imshow("Squat counter", cv2.flip(image, 1))
                 key = cv2.waitKey(1)
                 if key == ord('q'):
@@ -76,6 +86,6 @@ class KneeCounter:
         print("Kniebeugen-Übung gestartet.")
         self.run_knee()
 
-if __name__ == "__main__":
-    knee_counter = KneeCounter()
-    knee_counter.start()
+# if __name__ == "__main__":
+#     knee_counter = KneeCounter()
+#     knee_counter.start()

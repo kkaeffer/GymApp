@@ -3,12 +3,16 @@ from tkinter import messagebox
 import cv2
 from PIL import Image, ImageTk
 from push_up import PushUpCounter
+from knee import KneeCounter
 
 class FitnessApp:
     def __init__(self, root):
+        root.attributes('-fullscreen', True)  # Setzen Sie das Hauptfenster auf Vollbild
+        root.bind('<Escape>', lambda event: root.attributes('-fullscreen', False))  # Escape-Taste zum Beenden des Vollbildmodus
+        
         self.root = root
         self.root.title("Fitness App")
-        self.root.geometry("1280x720")  # Größe des Hauptfensters
+        self.root.geometry("600x400")  # Größe des Hauptfensters
 
         self.video_label = tk.Label(root, height=15, width=40)
         self.video_label.pack()
@@ -33,6 +37,11 @@ class FitnessApp:
         self.exit_button.pack()
         self.exit_button.pack_forget()
 
+        self.info_label = tk.Label(root, text="Zum Beenden q drücken")
+        self.info_label.pack(pady=10)
+        self.info_label = tk.Label(root, text="Drücke Esc um Vollbildmodus zubeenden")
+        self.info_label.pack(pady=10)
+
         # Kamera initialisieren (noch nicht starten)
         self.cap = cv2.VideoCapture(0)
 
@@ -42,6 +51,7 @@ class FitnessApp:
                      
         self.camera_started = False
         self.current_exercise = None
+
 
         self.update_menu()
 
@@ -60,6 +70,11 @@ class FitnessApp:
                 self.current_exercise = PushUpCounter()
                 self.current_exercise.run_push()  # Direkt die Übung starten
                 self.stop_workout()  # Übung nach dem Durchlauf beenden
+            elif exercise_name == "Kniebeugen":
+                self.current_exercise = KneeCounter()
+                self.current_exercise.run_knee()  # Direkt die Übung starten
+                self.stop_workout()  # Übung nach dem Durchlauf beenden
+
             else:
                 # Für andere Übungen könnten hier entsprechende Klassen hinzugefügt werden
                 pass
@@ -108,6 +123,7 @@ class FitnessApp:
     def exit_app(self):
         self.stop_workout()
         self.root.destroy()
+        self.stop_camera()
 
 if __name__ == "__main__":
     root = tk.Tk()
