@@ -8,7 +8,7 @@ from knee import KneeCounter
 
 class FitnessApp:
     def __init__(self, root):
-        root.attributes('-fullscreen', True)  # Setzen Sie das Hauptfenster auf Vollbild
+        root.attributes('-fullscreen', True)  # Hauptfenster auf Vollbild
         root.bind('<Escape>', lambda event: root.attributes('-fullscreen', False))  # Escape-Taste zum Beenden des Vollbildmodus
         
         # Fenstergröße wenn Fullscreen beendet ist
@@ -27,7 +27,7 @@ class FitnessApp:
         # Dropdown für die Übungsauswahl
         exercises = ["Push_up", "Kniebeugen", "Bizeps"]
         self.exercise_var = tk.StringVar(root, exercises[0])
-        self.exercise_var.set("")  # Setzen Sie den Wert auf einen leeren String
+        self.exercise_var.set("")  # Erste Auswahl auf NULL setzten
         self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, *exercises)
         self.exercise_dropdown.config(width=20) # Größe des Auswahlmenüs
         self.exercise_dropdown.pack()
@@ -56,6 +56,7 @@ class FitnessApp:
     def start_workout(self):
         exercise_name = self.exercise_var.get()
         if exercise_name:
+            # Vergleich mit der Auswahl aus dem Dropdownmenu
             if exercise_name == "Push_up":
                 self.current_exercise = PushUpCounter()
                 self.current_exercise.run_push()  # Direkt die Übung starten
@@ -95,7 +96,7 @@ class FitnessApp:
             self.video_label.pack(expand=True, fill=tk.BOTH)
             self.show_camera()
 
-    # ausschalten der Kamera
+    # Ausschalten der Kamera
     def stop_camera(self):
         if self.camera_started:
             self.camera_started = False
