@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as md
+import counter as Counter
 
 md_drawing = md.solutions.drawing_utils
 md_pose = md.solutions.pose
@@ -42,7 +43,9 @@ def run_push():
                 else:
                     position = None
 
-            cv2.imshow("Push-up counter", cv2.flip(image, 1))
+            #Funktionsaufruf des Counters
+            Counter.counter(image, count)
+            #cv2.imshow("Push-up counter", cv2.flip(image, 1))
             key = cv2.waitKey(1)
             if key == ord('q'):
                 break
