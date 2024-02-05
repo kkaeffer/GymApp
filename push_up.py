@@ -53,6 +53,7 @@ class PushUpCounter:
                 # Spiegele das gesamte Bild horizontal
                 image = cv2.flip(image, 1)
 
+                # Fullscreen
                 cv2.namedWindow("Push-up Counter", cv2.WND_PROP_FULLSCREEN)
                 cv2.setWindowProperty("Push-up Counter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
                 cv2.imshow("Push-up Counter", cv2.flip(image, 1))

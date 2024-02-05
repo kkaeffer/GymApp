@@ -31,6 +31,8 @@ class KneeCounter:
                     print("Leere Kamera")
                     break
 
+                image = cv2.copyMakeBorder(image, 0, 0, 0, 0, cv2.BORDER_CONSTANT, value=(255, 255, 255))
+
                 image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
                 result = pose.process(image)
 
