@@ -66,10 +66,13 @@ class FitnessApp:
         self.camera_started = False
 
     def start_workout(self):
+        print("start_workaut")
         exercise_name = self.exercise_var.get()
         if exercise_name:
+            print("im ersten IF")
             if exercise_name == "Push_up":
                 #import push_up as Push_up
+                print("im 2. IF")
                 self.current_exercise = Push_up.run_push(exercise_name)
             elif exercise_name == "Kniebeugen":
                 #import knee as Knee
