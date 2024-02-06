@@ -35,7 +35,7 @@ Die Bibliotheken werden nun heruntergeladen und stehen danach zur Verfügung.
 
 ## Ausführen
 
-- Zum starten Klicken Sie in das main.py Programm
+- Zum starten Klicken Sie in das GUI.py Programm
 - Danach können Sie das Ausführfenster mit der Tastkombination Strg + Umschalttaste + D öffnen
 - Links sollte sich dann ein Fenster öffnen mit einem Button "Ausführen und debuggen" bzw bei englischer Einstellung "Run and debug". Bitte betätigen Sie diesen.
 - Achten Sie hierbei darauf den "Python Debugger" zu nutzen.
