@@ -4,7 +4,7 @@ import cv2
 from PIL import Image, ImageTk
 from push_up import PushUpCounter
 from knee import KneeCounter
-#from curly import *Hier könnte Ihre Klasse stehen*
+from curly import CurlCounter
 
 class FitnessApp:
     def __init__(self, root):
@@ -25,7 +25,7 @@ class FitnessApp:
         self.exercise_label.pack()
 
         # Dropdown für die Übungsauswahl
-        exercises = ["Push_up", "Kniebeugen", "Bizeps"]
+        exercises = ["Push_up", "Kniebeugen", "Curls"]
         self.exercise_var = tk.StringVar(root, exercises[0])
         self.exercise_var.set("")  # Erste Auswahl auf NULL setzten
         self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, *exercises)
@@ -65,9 +65,9 @@ class FitnessApp:
                 self.current_exercise = KneeCounter()
                 self.current_exercise.run_knee()  # Direkt die Übung starten
                 self.stop_workout()  # Übung nach dem Durchlauf beenden
-            elif exercise_name == "Bizeps":
-                # self.current_exercise = CurlsCounter()
-                # self.current_exercise.run_curly()  # Direkt die Übung starten
+            elif exercise_name == "Curls":
+                self.current_exercise = CurlCounter()
+                self.current_exercise.run_curl()  # Direkt die Übung starten
                 self.stop_workout()  # Übung nach dem Durchlauf beenden
             else:
                 # Für andere Übungen könnten hier entsprechende Klassen hinzugefügt werden
