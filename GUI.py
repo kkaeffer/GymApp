@@ -73,7 +73,7 @@ class FitnessApp:
                 # Für andere Übungen könnten hier entsprechende Klassen hinzugefügt werden
                 pass
             messagebox.showinfo("Workout gestartet", f"Starte das Workout für {exercise_name}!")
-            self.start_camera()
+            #self.start_camera()
             self.start_button.pack_forget()
         else:
             messagebox.showwarning("Ungültige Eingabe", "Bitte wählen Sie eine Übung aus.")

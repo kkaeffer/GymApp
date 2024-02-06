@@ -62,25 +62,32 @@ class CurlCounter:
             except:
                 pass
 
-            # Render curl counter
-            cv2.putText(image, 'Counter: {}'.format(self.counter), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
-
             # Render detections
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                     mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
                                     mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
-                                    )               
+                                    )       
+                    
+            #Spiegele das gesamte Bild horizontal
+            image = cv2.flip(image, 1)
+
+            # Render curl counter
+            cv2.putText(image, 'Counter: {}'.format(self.counter), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
             #countfunc(image, self.count)
             cv2.putText(image, f'Q zum Beenden', (370, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
-            #Spiegele das gesamte Bild horizontal
+            # Spiegele das gesamte Bild horizontal
             image = cv2.flip(image, 1)
 
-            # #Fenster benennen und Vollbild schalten
-            cv2.namedWindow("Curls Counter", cv2.WND_PROP_FULLSCREEN)
-            cv2.setWindowProperty("Curls Counter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+            #Fenster nicht im Vollbildmodus -> Könnte das Bild verzerren
+            cv2.namedWindow("Curls Counter", cv2.WINDOW_NORMAL)            
+                       
+            # Fenstergröße
+            cv2.resizeWindow("Curls Counter", 980, 690)
             cv2.imshow("Curls Counter", cv2.flip(image, 1))
+
+            # Zum Beenden q drücken
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
 

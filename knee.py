@@ -85,11 +85,16 @@ class KneeCounter:
                 #Spiegele das gesamte Bild horizontal
                 image = cv2.flip(image, 1)
 
-                #Anzeige des Fensters im Vollbild
-                cv2.namedWindow("Squat Counter", cv2.WND_PROP_FULLSCREEN)
-                cv2.setWindowProperty("Squat Counter", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-                cv2.imshow("Squat counter", cv2.flip(image, 1))
+                #Fenster nicht im Vollbildmodus -> Könnte das Bild verzerren
+                cv2.namedWindow("Squat Counter", cv2.WINDOW_NORMAL)            
+                       
+
+                #Fenstergröße
+                cv2.resizeWindow("Squat Counter", 980, 690)
+                cv2.imshow("Squat Counter", cv2.flip(image, 1))
                 key = cv2.waitKey(1)
+
+                #Zum Beenden q drücken
                 if key == ord('q'):
                     break
 
