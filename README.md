@@ -2,6 +2,8 @@
 
 ## Was ist die GymApp?
 
+Die GymApp ist eine Python-Anwendung, welche im Rahmen des KI-Unterrichts erstellt wurde. Sie ermöglicht es Fitnessübungen wie Kniebeugen oder Liegestütze mithilfe einer künstlichen Intelligenz zu optimieren. Durch gewisse "Landmarks" werden am Körper Punkte wie bspw. die Schulter oder das Handgelenk erkannt und mittels Winkelberechnung festgestellt, ob die Übung korrekt ausgeführt wurde. Desweiteren wird durch einen Zähler der Fortschritt mitdokumentiert.
+
 ## Wie starte ich das Programm auf meinem Computer
 
 ### Python installieren
@@ -20,20 +22,23 @@ Gehen Sie auf die Webseite <https://pip.pypa.io/en/stable/installation/> für me
 ## Bedienungsanleitung
 
 - Zum starten Klicken Sie in das GUI.py Programm
-- Danach können Sie das Ausführfenste mit der Tastkombination Strg + Umschalttaste + D öffnen
-- Links sollte sich dann ein Fenster öffnen mit einem Button "Ausführen und debuggen" bzw bei englischer Einstellung "Run and debug". Bitte betättigen Sie diesen.
+- Danach können Sie das Ausführfenster mit der Tastkombination Strg + Umschalttaste + D öffnen
+- Links sollte sich dann ein Fenster öffnen mit einem Button "Ausführen und debuggen" bzw bei englischer Einstellung "Run and debug". Bitte betätigen Sie diesen.
+- Achten Sie hierbei darauf den "Python Debugger" zu nutzen.
+- Die Anwendung öffnet sich.
 
 ### Menu
 
 ![Menu](image.png)
 
-- Beim Anklicken des oberen leerausschauenden Button können Sie Ihre Gewünschte Übung aussuchen.
-- Mit betätigen des Start-Button starten Sie das Programm.
-Jetzt können Sie Ihre Übung starten.
-- Um den Vollbildmodus zubeeden drücken Sie auf "Esc"
+- Beim Anklicken des oberen Buttons können Sie Ihre gewünschte Übung aussuchen.
+- Klicken Sie den Start-Button um die Übung zu starten.
+Die Kameraaufnahme wird gestartet
+- Um die Übung zu beenden, nutzen Sie die Taste "Q" auf ihrer Tastatur.
+- Um den Vollbildmodus zu beenden drücken Sie auf "Esc".
 
 ### In der Übung
 
-- Links oben können Sie während des Sportes den Anzahl der Wiederholungen sehen.
-- Um das Beste aus Ihrer Fitness rauszuholen ist der Zähler nicht begrenzt, damit Sie nicht aufhören müssen wenn Sie mehr geschafft hätten.
-- Um die Übung zu beenden, können Sie auf Ihrer Tastatur q betätigen.
+- Am oberen linken Bildschirmrand können Sie während der Ausführung die Anzahl der Wiederholungen sehen.
+- Um das Beste aus Ihrer Fitness rauszuholen ist der Zähler nicht begrenzt.
+- Um die Übung zu beenden, können Sie auf Ihrer Tastatur "Q" betätigen.
