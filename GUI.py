@@ -4,15 +4,16 @@ import cv2
 from PIL import Image, ImageTk
 from push_up import PushUpCounter
 from knee import KneeCounter
+from curl import CurlCounter
 
 class FitnessApp:
     def __init__(self, root):
-        root.attributes('-fullscreen', True)  # Setzen Sie das Hauptfenster auf Vollbild
-        root.bind('<Escape>', lambda event: root.attributes('-fullscreen', False))  # Escape-Taste zum Beenden des Vollbildmodus
+        root.attributes('-fullscreen', True)  
+        root.bind('<Escape>', lambda event: root.attributes('-fullscreen', False))  
         
         self.root = root
         self.root.title("Fitness App")
-        self.root.geometry("600x400")  # Größe des Hauptfensters
+        self.root.geometry("600x400")  
 
         self.video_label = tk.Label(root, height=15, width=40)
         self.video_label.pack()
@@ -20,10 +21,9 @@ class FitnessApp:
         self.exercise_label = tk.Label(root, text="Wähle eine Übung:")
         self.exercise_label.pack()
 
-        exercises = ["Push_up", "Kniebeugen"]
-        self.exercise_var = tk.StringVar(root, exercises[0])
-        self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, *exercises)
-        self.exercise_dropdown.config(width=20) # Größe des Auswahlmenüs
+        self.exercise_var = tk.StringVar(root, "Push_up")  # Standardübung
+        self.exercise_dropdown = tk.OptionMenu(root, self.exercise_var, "Push_up", "Kniebeugen", "Curls")
+        self.exercise_dropdown.config(width=20)
         self.exercise_dropdown.pack()
 
         self.start_button = tk.Button(root, text="Start", command=self.start_workout, height=3, width=20)
@@ -39,10 +39,9 @@ class FitnessApp:
 
         self.info_label = tk.Label(root, text="Zum Beenden q drücken")
         self.info_label.pack(pady=10)
-        self.info_label = tk.Label(root, text="Drücke Esc um Vollbildmodus zubeenden")
+        self.info_label = tk.Label(root, text="Drücke Esc um Vollbildmodus zu beenden")
         self.info_label.pack(pady=10)
 
-        # Kamera initialisieren (noch nicht starten)
         self.cap = cv2.VideoCapture(0)
 
         # Konfiguration für HD-Qualität
@@ -52,38 +51,29 @@ class FitnessApp:
         self.camera_started = False
         self.current_exercise = None
 
-
-        self.update_menu()
-
-    def update_menu(self):
-        exercises = ["Push_up", "Kniebeugen"]
-        self.exercise_var.set("")  # Setzen Sie den Wert auf einen leeren String
-        self.exercise_dropdown["menu"].delete(0, "end")  # Löschen Sie alle vorherigen Einträge
-
-        for exercise in exercises:
-            self.exercise_dropdown["menu"].add_command(label=exercise, command=tk._setit(self.exercise_var, exercise))    
-
     def start_workout(self):
         exercise_name = self.exercise_var.get()
         if exercise_name:
             if exercise_name == "Push_up":
                 self.current_exercise = PushUpCounter()
-                self.current_exercise.run_push()  # Direkt die Übung starten
-                self.stop_workout()  # Übung nach dem Durchlauf beenden
+                self.current_exercise.run_push()  
+                self.stop_workout()  
             elif exercise_name == "Kniebeugen":
                 self.current_exercise = KneeCounter()
-                self.current_exercise.run_knee()  # Direkt die Übung starten
-                self.stop_workout()  # Übung nach dem Durchlauf beenden
+                self.current_exercise.run_knee()  
+                self.stop_workout()  
+            elif exercise_name == "Curls":
+                self.current_exercise = CurlCounter()
+                self.current_exercise.run_curl()  
+                self.stop_workout()  
 
             else:
-                # Für andere Übungen könnten hier entsprechende Klassen hinzugefügt werden
                 pass
             messagebox.showinfo("Workout gestartet", f"Starte das Workout für {exercise_name}!")
             self.start_camera()
             self.start_button.pack_forget()
             self.stop_button.pack()
             self.exit_button.pack()
-            self.update_menu()
         else:
             messagebox.showwarning("Ungültige Eingabe", "Bitte wählen Sie eine Übung aus.")
 
@@ -104,7 +94,6 @@ class FitnessApp:
             self.exercise_dropdown.pack_forget()
             self.video_label.pack(expand=True, fill=tk.BOTH)
             self.show_camera()
-            self.update_menu()
 
     def stop_camera(self):
         if self.camera_started:
@@ -113,7 +102,7 @@ class FitnessApp:
 
     def show_camera(self):
         _, frame = self.cap.read()
-        frame = cv2.resize(frame, (1280, 720))      #Größe des Aufnahme Fensters
+        frame = cv2.resize(frame, (1280, 720))
         photo = ImageTk.PhotoImage(image=Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
         self.video_label.configure(image=photo)
         self.video_label.image = photo
@@ -125,7 +114,5 @@ class FitnessApp:
         self.root.destroy()
         self.stop_camera()
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = FitnessApp(root)
-    root.mainloop()
+    def run(self):
+        self.root.mainloop()
