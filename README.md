@@ -17,7 +17,9 @@ Wichtig: Installationsmaske "Hinzufügen zur Path-Variable" ankreuzen.
 Laden Sie Sich die zip-Datei <https://bootstrap.pypa.io/pip/pip.pyz> herunter
 Gehen Sie auf die Webseite <https://pip.pypa.io/en/stable/installation/> für mehr Informationen
 
-### Mediapipe installieren
+### OpenCV und Mediapipe installieren
+In Visual Studio Code können Sie mittels des Terminals und dem Kommando "pip install mediapipe" und "pip install opencv-python".
+Die Bibliotheken werden nun heruntergeladen und stehen danach zur Verfügung.
 
 ## Bedienungsanleitung
 
