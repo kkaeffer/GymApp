@@ -6,6 +6,11 @@ Die GymApp ist eine Python-Anwendung, welche im Rahmen des KI-Unterrichts erstel
 
 ## Wie starte ich das Programm auf meinem Computer
 
+### Visual Studio Code und Python Extension Pack installieren:
+
+Installieren Sie Visual Studio Code von der offiziellen Website: Visual Studio Code
+Installieren Sie das Python Extension Pack über die Erweiterungsverwaltung von Visual Studio Code oder alternativ verwenden Sie PyCharm.
+
 ### Python installieren
 
 Downloaden Sie unter <https://www.python.org/downloads/> den Installer für Python und beachten Sie das die Version nur 3.6 bis 3.8 ist. Nur diese Versionen werden von MediaPipe unterstützt.
@@ -15,11 +20,18 @@ Wichtig: Installationsmaske "Hinzufügen zur Path-Variable" ankreuzen.
 ### pip installieren
 
 Laden Sie Sich die zip-Datei <https://bootstrap.pypa.io/pip/pip.pyz> herunter
+Führen Sie den Befehl im CMD Fenster aus "py get-pip.py"
 Gehen Sie auf die Webseite <https://pip.pypa.io/en/stable/installation/> für mehr Informationen
 
 ### OpenCV und Mediapipe installieren
-In Visual Studio Code können Sie mittels des Terminals und dem Kommando "pip install mediapipe" und "pip install opencv-python".
+
+In Visual Studio Code können Sie mittels des Terminals und dem Kommando "pip install mediapipe", "pip install opencv-python", "pip install tkinter".
 Die Bibliotheken werden nun heruntergeladen und stehen danach zur Verfügung.
+
+### Python-Interpreter auswählen
+
+    - Öffnen Sie Visual Studio Code und drücken Sie F1.
+    - Wählen Sie "Select Interpreter" und wählen Sie die installierte Python-Version (3.7.9).
 
 ## Bedienungsanleitung
 
